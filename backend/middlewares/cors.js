@@ -1,6 +1,6 @@
 const allowedCors = [
-  'http://frontend15.nomoredomains.xyz/users',
-  'https://frontend15.nomoredomains.xyz/users',
+  'http://frontend15.nomoredomains.xyz',
+  'https://frontend15.nomoredomains.xyz',
   'localhost:3000',
 ];
 
@@ -17,7 +17,7 @@ module.exports.corsAllow = (req, res, next) => {
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
-    return res.end();
+    // return res.end();
   }
 
   return next();
