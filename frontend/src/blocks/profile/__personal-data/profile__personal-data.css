@@ -1,0 +1,11 @@
+.profile__personal-data {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 620px) {
+  .profile__personal-data {
+    align-self: center;
+    margin-top: 26px;
+  }
+}
