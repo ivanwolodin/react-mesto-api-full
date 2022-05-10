@@ -1,5 +1,5 @@
 export const register = (email, password) => {
-  return fetch(`https://auth.nomoreparties.co/signup`, {
+  return fetch(`https://backend15.nomoredomains.xyz/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +11,7 @@ export const register = (email, password) => {
 };
 
 export const authorize = (email, password) => {
-  return fetch(`https://auth.nomoreparties.co/signin`, {
+  return fetch(`https://backend15.nomoredomains.xyz/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const authorize = (email, password) => {
 };
 
 export const checkToken = (token) => {
-  return fetch(`https://auth.nomoreparties.co/users/me`, {
+  return fetch(`https://backend15.nomoredomains.xyz/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

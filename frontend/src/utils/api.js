@@ -75,6 +75,6 @@ class Api {
 }
 
 export const api = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-35",
+  url: "https://backend15.nomoredomains.xyz",
   token: "3a99f107-1f3f-4594-b232-09564fbe9a82",
 });
