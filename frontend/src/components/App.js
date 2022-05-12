@@ -52,6 +52,7 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
+      console.log(api.headers);
       api
         .getInitialCards()
         .then((cards) => {
