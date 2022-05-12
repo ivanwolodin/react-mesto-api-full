@@ -18,10 +18,12 @@ import { Api } from "../utils/api";
 import { userContext } from "../context/CurrentUserContext";
 import { authorize, checkToken, register } from "../utils/auth";
 import { useHistory } from "react-router";
+
 const api = new Api({
   url: "https://backend15.nomoredomains.xyz",
   // token: "3a99f107-1f3f-4594-b232-09564fbe9a82",
 });
+
 function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({
@@ -104,8 +106,8 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("token", res.token);
-          api.setToken(res.token);
-          console.log("Setting headers")
+          api.setAuthHeaders(res.token);
+          console.log("Setting headers");
           console.log(api.headers);
           console.log(`headers=${api.headers}`);
           setLoggedIn(true);

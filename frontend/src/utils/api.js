@@ -1,11 +1,8 @@
 export class Api {
   constructor(options) {
     this._url = options.url;
-    this._token = "";
-    this.headers = {
-      authorization: this._token,
-      "Content-Type": "application/json",
-    };
+    // this._token = "";
+    this.headers = {};
   }
 
   _checkResponse(res) {
@@ -15,12 +12,13 @@ export class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  setToken(token){
-    this._token = `Bearer ${token}`;
+  setAuthHeaders(token){
+    // this._token = `Bearer ${token}`;
     this.headers = {
-      authorization: this._token,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     };
+
   }
 
   getInitialCards() {
