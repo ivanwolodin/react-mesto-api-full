@@ -123,7 +123,7 @@ function App() {
   function handleRegistration(data) {
     register(data.name, data.password)
       .then((res) => {
-        if (res.status !== 400 && res.status !== 401) {
+        if (res.status !== 400 || res.status !== 401 || res.status !== 409) {
           history.push("/signin");
           setToolTipStatus(true);
           setToolTipMessage("Вы успешно зарегистрировались");
