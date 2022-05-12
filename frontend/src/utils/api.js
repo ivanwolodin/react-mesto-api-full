@@ -1,9 +1,9 @@
 class Api {
   constructor(options) {
     this._url = options.url;
-    this.token = "";
-    this._headers = {
-      authorization: this.token,
+    this._token = "";
+    this.headers = {
+      authorization: this._token,
       "Content-Type": "application/json",
     };
   }
@@ -16,29 +16,29 @@ class Api {
   }
 
   setToken(token){
-    this.token = `Bearer ${token}`;
-    this._headers = {
-      authorization: this.token,
+    this._token = `Bearer ${token}`;
+    this.headers = {
+      authorization: this._token,
       "Content-Type": "application/json",
     };
   }
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
-      headers: this._headers,
+      headers: this.headers,
     }).then(this._checkResponse);
   }
 
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
-      headers: this._headers,
+      headers: this.headers,
     }).then(this._checkResponse);
   }
 
   changeUserInfo(name, profession) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this.headers,
       body: JSON.stringify({
         name: name,
         about: profession,
@@ -49,7 +49,7 @@ class Api {
   addNewCard(name, link) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: this.headers,
       body: JSON.stringify({
         name: name,
         link: link,
@@ -60,14 +60,14 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this.headers,
     }).then(this._checkResponse);
   }
 
   changeAvatar(avatarLink) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this.headers,
       body: JSON.stringify({
         avatar: avatarLink,
       }),
@@ -77,12 +77,12 @@ class Api {
   changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: isLiked ? "PUT" : "DELETE",
-      headers: this._headers,
+      headers: this.headers,
     }).then(this._checkResponse);
   }
 }
 
 export const api = new Api({
   url: "https://backend15.nomoredomains.xyz",
-  token: "3a99f107-1f3f-4594-b232-09564fbe9a82",
+  // token: "3a99f107-1f3f-4594-b232-09564fbe9a82",
 });

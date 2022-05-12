@@ -101,10 +101,11 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("token", res.token);
-          setLoggedIn(true);
           api.setToken(res.token);
-          console.log(api.token);
-
+          console.log("Setting headers")
+          console.log(api.headers);
+          console.log(`headers=${api.headers}`);
+          setLoggedIn(true);
           setuUserEmail(data.name);
           history.push("/");
         } else {
