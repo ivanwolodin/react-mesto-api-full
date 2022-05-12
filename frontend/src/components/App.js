@@ -20,8 +20,7 @@ import { authorize, checkToken, register } from "../utils/auth";
 import { useHistory } from "react-router";
 
 const api = new Api({
-  url: "https://backend15.nomoredomains.xyz",
-  // token: "3a99f107-1f3f-4594-b232-09564fbe9a82",
+  url: "https://backend15.nomoredomains.xyz"
 });
 
 function App() {
@@ -52,11 +51,11 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      console.log(api.headers);
+      api.setAuthHeaders();
       api
         .getInitialCards()
-        .then((cards) => {
-          setCards(cards);
+        .then((data) => {
+          setCards(data.cards);
         })
         .catch((err) => {
           console.log("Cannot get data from server");
@@ -65,12 +64,12 @@ function App() {
 
       api
         .getUserInfo()
-        .then((userData) => {
+        .then((data) => {
           setCurrentUser({
-            name: userData.name,
-            about: userData.about,
-            avatarUrl: userData.avatar,
-            id: userData._id,
+            name: data.data.name,
+            about: data.data.about,
+            avatarUrl: data.data.avatar,
+            id: data.data._id,
           });
         })
         .catch((err) => {
@@ -107,10 +106,6 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("token", res.token);
-          api.setAuthHeaders(res.token);
-          console.log("Setting headers");
-          console.log(api.headers);
-          console.log(`headers=${api.headers}`);
           setLoggedIn(true);
           setuUserEmail(data.name);
           history.push("/");
@@ -154,13 +149,16 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser.id);
+    const isLiked = card.likes.some((i) => i === currentUser.id);
+
+    console.log(`isLiked=${isLiked}`);
+    console.log(card);
 
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+          state.map((c) => (c._id === card._id ? newCard.card : c))
         );
       })
       .catch((err) => {
@@ -207,7 +205,7 @@ function App() {
     api
       .addNewCard(data.cardName, data.cardLink)
       .then((response) => {
-        setCards([response, ...cards]);
+        setCards([response.card, ...cards]);
         closeAllPopups();
       })
       .catch((err) => {

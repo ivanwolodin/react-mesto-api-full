@@ -1,7 +1,6 @@
 export class Api {
   constructor(options) {
     this._url = options.url;
-    // this._token = "";
     this.headers = {};
   }
 
@@ -12,10 +11,9 @@ export class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  setAuthHeaders(token){
-    // this._token = `Bearer ${token}`;
+  setAuthHeaders = () => {
     this.headers = {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     };
 
@@ -79,8 +77,3 @@ export class Api {
     }).then(this._checkResponse);
   }
 }
-
-// export const api = new Api({
-//   url: "https://backend15.nomoredomains.xyz",
-//   // token: "3a99f107-1f3f-4594-b232-09564fbe9a82",
-// });

@@ -6,7 +6,7 @@ const { PrivilegeError } = require('../errors/PrivilegeError');
 module.exports.getCards = async (req, res, next) => {
   try {
     const cards = await Card.find({});
-    res.send({ data: cards });
+    res.send({ cards });
   } catch (e) {
     next(e);
   }
