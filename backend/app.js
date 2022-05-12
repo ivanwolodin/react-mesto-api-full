@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const { PORT = 3000 } = process.env;
 
@@ -8,15 +9,16 @@ const mongoose = require('mongoose');
 const { errors, celebrate, Joi } = require('celebrate');
 const helmet = require('helmet');
 
+const corsOptions = require('./utils/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { login, createUser } = require('./controllers/auth');
 const { auth } = require('./middlewares/auth');
 const { handler404, generalErrorHandler } = require('./errors/errorHandlers');
 const { REGEX_MAIL_CHECK } = require('./utils/utils');
-const { corsAllow } = require('./middlewares/cors');
 
 const app = express();
 
+app.use(cors(corsOptions));
 app.use(helmet());
 
 app.use(bodyParser.json());
@@ -27,9 +29,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useCreateIndex: true,
   useFindAndModify: false,
 });
-
-app.use(corsAllow);
-
 app.use(requestLogger);
 app.use(errorLogger);
 
