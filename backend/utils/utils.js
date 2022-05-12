@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const VALIDATION_ERROR = 'ValidationError';
 const CAST_ERROR = 'CastError';
 
@@ -9,7 +11,7 @@ const DATABASE_ERROR_CODE = 409;
 
 const MONGO_DB_DUPLICATE_EMAIL_CODE = 11000;
 
-const { JWT_TOKEN = 'c2238e749426160ecaf93dc6900352f91981f9311e70945e117110fe1ec1c3fa' } = process.env;
+const { JWT_TOKEN = 'secret_code' } = process.env.JWT_TOKEN;
 
 const REGEX_MAIL_CHECK = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/;
 

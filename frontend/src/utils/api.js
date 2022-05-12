@@ -11,12 +11,11 @@ export class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  setAuthHeaders = () => {
+  setAuthHeaders() {
     this.headers = {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
     };
-
   }
 
   getInitialCards() {
@@ -33,10 +32,10 @@ export class Api {
 
   changeUserInfo(name, profession) {
     return fetch(`${this._url}/users/me`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
-        name: name,
+        name,
         about: profession,
       }),
     }).then(this._checkResponse);
@@ -44,25 +43,25 @@ export class Api {
 
   addNewCard(name, link) {
     return fetch(`${this._url}/cards`, {
-      method: "POST",
+      method: 'POST',
       headers: this.headers,
       body: JSON.stringify({
-        name: name,
-        link: link,
+        name,
+        link,
       }),
     }).then(this._checkResponse);
   }
 
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: this.headers,
     }).then(this._checkResponse);
   }
 
   changeAvatar(avatarLink) {
     return fetch(`${this._url}/users/me/avatar`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
         avatar: avatarLink,
@@ -72,7 +71,7 @@ export class Api {
 
   changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: isLiked ? "PUT" : "DELETE",
+      method: isLiked ? 'PUT' : 'DELETE',
       headers: this.headers,
     }).then(this._checkResponse);
   }

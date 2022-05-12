@@ -13,6 +13,7 @@ backend/node_modules
 
 # Optional npm cache directory
 backend/.npm
+backend/.env
 
 # Optional REPL history
 .DS_Store
