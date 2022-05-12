@@ -1,0 +1,8 @@
+.popup__registration {
+  background-color: white;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  position: relative;
+}

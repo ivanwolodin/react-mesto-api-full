@@ -1,0 +1,19 @@
+.popup__error_visible {
+  opacity: 1;
+  transition: 0.3s;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  max-width: 358px;
+  margin-top: 5px;
+  display: flex;
+}
+
+@media screen and (max-width: 620px) {
+  .popup__error_visible {
+    max-width: 236px;
+    margin-bottom: 25px;
+  }
+}

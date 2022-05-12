@@ -1,0 +1,23 @@
+.profile__position {
+  color: #ffffff;
+  margin-bottom: 0;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 16px;
+}
+
+@media screen and (max-width: 620px) {
+  .profile__position {
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile__position {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

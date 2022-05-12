@@ -1,0 +1,9 @@
+.login {
+  color: #ffffff;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 400;
+  margin-left: auto;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+}
