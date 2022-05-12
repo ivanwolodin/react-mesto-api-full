@@ -14,11 +14,14 @@ import ImagePopup from "./ImagePopup";
 import InfoTooltip from "./InfoTooltip";
 import Login from "./Login";
 import Register from "./Register";
-import { api } from "../utils/api";
+import { Api } from "../utils/api";
 import { userContext } from "../context/CurrentUserContext";
 import { authorize, checkToken, register } from "../utils/auth";
 import { useHistory } from "react-router";
-
+const api = new Api({
+  url: "https://backend15.nomoredomains.xyz",
+  // token: "3a99f107-1f3f-4594-b232-09564fbe9a82",
+});
 function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({
