@@ -102,6 +102,9 @@ function App() {
         if (res.token) {
           localStorage.setItem("token", res.token);
           setLoggedIn(true);
+          api.setToken(res.token);
+          console.log(api.token);
+
           setuUserEmail(data.name);
           history.push("/");
         } else {
